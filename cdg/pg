@@ -1,0 +1,43 @@
+#!/bin/sh
+# Start Proof General with the right -I options
+# Use the Makefile to rebuild dependencies if needed
+# Recompile the modified file after coqide editing
+
+if [ `uname` = "Darwin" ]
+then EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+else EMACS=emacs
+fi
+PWD=`pwd`
+INCLUDES=`make print-includes`
+
+make -q ${1}o || {
+  make -n ${1}o | grep -v "\\b${1}\\b" | \
+  (while read cmd; do
+    sh -c "$cmd" || exit 2
+   done)
+}
+
+#COQPROGNAME="coqtop"
+COQPROGNAME="/Users/jba/.opam/coq84/bin/coqtop"
+
+COQPROGARGS=""
+for arg in $INCLUDES; do
+  case "$arg" in
+    -I|-R|-as|compcert*)
+      COQPROGARGS="$COQPROGARGS \"$arg\"";;
+    *)
+      COQPROGARGS="$COQPROGARGS \"$PWD/$arg\"";;
+  esac
+done
+
+BD=$PWD/_build
+echo "COQPROGARGS=" $COQPROGARGS
+echo "BD=" $BD
+OCAMLINCLUDES=" -I $BD/extraction -I $BD/lib -I $BD/common -I $BD/cparser -I $BD/backend -I $BD/driver -I $BD/cfrontend -I $BD/ia32 -I $BD/arm"
+OCAMLPROGNAME="\"ocaml"$OCAMLINCLUDES\"
+
+
+$EMACS --eval "(setq coq-prog-name \"$COQPROGNAME\")" \
+ --eval "(setq coq-prog-args '($COQPROGARGS))" \
+ --eval "(setq tuareg-interactive-program '($OCAMLPROGNAME))" $1 \
+& #&& make ${1}o

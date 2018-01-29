@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+.depend
+*
+# Except this file
+!.gitignore
