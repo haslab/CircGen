@@ -8,5 +8,5 @@ setup_build_dir: scripts/CDG.files
 clean_setup_build_dir: scripts/CompCert.files scripts/CDG.files
 	@rm -rf build/*
 	@cp submodules/CompCert/.depend build/
-	@python scripts/setup_build.py ../submodules/CompCert build < scripts/CompCert.files
-	@python scripts/setup_build.py ../cdg build < scripts/CDG.files
+	@python3 scripts/setup_build.py ../submodules/CompCert build < scripts/CompCert.files
+	@python3 scripts/setup_build.py ../cdg build < scripts/CDG.files

@@ -87,7 +87,7 @@ def parseLsR(src, dst):
                 lndir.delete_if_exists_and_overwrite(True,real_dst)
                 lndir.improved_error_symlink(sym_src, real_dst)
             else:
-                print "Unknow entry: ", file_name
+                print("Unknow entry: ", file_name)
 
 
 

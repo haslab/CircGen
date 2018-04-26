@@ -24,7 +24,8 @@ advanced_debug=false
 usage='Usage: ./configure [options] target
 
 Supported targets:
-  bool-circ        (Boolean Circuit Generation)
+  bool-circ-macosx  (Boolean Circuit Generation)
+  bool-circ-linux  (Boolean Circuit Generation)
   manual           (edit configuration file by hand)
 
 Options:
@@ -68,7 +69,7 @@ struct_passing=""
 struct_return=""
 
 case "$target" in
-  bool-circ)
+  bool-circ-macosx)
     arch="boolcirc"
     model="standard"
     abi="standard"
@@ -79,6 +80,20 @@ case "$target" in
     cprepro="${toolprefix}gcc -std=c99 -arch i386 -U__GNUC__ -U__clang__ -U__BLOCKS__ '-D__attribute__(x)=' '-D__asm(x)=' -E"
     casm="${toolprefix}gcc -arch i386 -c"
     clinker="${toolprefix}gcc -arch i386 -Wl,-no_pie"
+    ocamloptld="-cclib \"-Wl,-stack_size,1000000\""
+    libmath="-lm";;
+  bool-circ-linux)
+    arch="boolcirc"
+    model="standard"
+    abi="standard"
+    struct_passing="ints"
+    struct_return="ref"
+    system="linux"
+    cc="${toolprefix}gcc -m32"
+    cprepro="${toolprefix}gcc -std=c99 -m32 -U__GNUC__ -E"
+    casm="${toolprefix}gcc -m32 -c"
+    clinker="${toolprefix}gcc -m32"
+    ocamloptld=""
     libmath="-lm";;
   manual)
     ;;
@@ -225,6 +240,7 @@ CPREPRO=$cprepro
 CASM=$casm
 CASMRUNTIME=$casmruntime
 CLINKER=$clinker
+OCAMLOPTLDFLAGS=$ocamloptld
 LIBMATH=$libmath
 HAS_RUNTIME_LIB=$has_runtime_lib
 HAS_STANDARD_HEADERS=$has_standard_headers

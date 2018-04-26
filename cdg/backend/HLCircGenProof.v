@@ -4138,7 +4138,7 @@ Lemma flat_phi_renamed φ φ' cw condv localv n x:
 Proof.
 move=> Hcw Hmon Hren /mapP [y].
 rewrite (phi_idents_renamed Hren) => Hin -> /=; split; first by apply: map_f.
-by apply: is_renamed_cond_of_phi.
+apply: is_renamed_cond_of_phi => //; eauto.
 Qed.
 
 Lemma conn_eval_isS_subgrid g g' c x:

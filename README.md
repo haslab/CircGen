@@ -26,11 +26,12 @@ This repository includes, as a submodule, the original CompCert distribution
 In order to compiler to prototype, the following dependencies are
 needed:
 
+ * [Python3](http://python.org)
  * [Ocaml](https://ocaml.org) functional language (version 4.00 or higher)
- * [Coq](https://coq.inria.fr) proof assistant (version 8.4)
+ * [Coq](https://coq.inria.fr) proof assistant (version 8.4.6)
  * [Menhir](http://gallium.inria.fr/~fpottier/menhir/) parser
    generator
- * [SsReflect](http://ssr.msr-inria.inria.fr) Ssreflect/MathComp (version 1.5)
+ * [SsReflect](http://ssr.msr-inria.inria.fr) Ssreflect/MathComp (version 1.6.1)
 
 All the above packages are available through the
 [OPAM](https://opam.ocaml.org) (Ocaml Package Manager).
@@ -39,12 +40,12 @@ All the above packages are available through the
 opam install coq-8.4.6
 ...
 opam repo add coq-released https://coq.inria.fr/opam/released
-opam install coq-math-comp.1.5.0
+opam install coq-mathcomp-algebra.1.6.1
 ```
 
 ### Clone the repository
 
-The CDG tool reposity includes the CompCert repository as a submodule.
+The `circgen` tool reposity includes the CompCert repository as a submodule.
 In order to clone it (including CompCert's repo) please perform:
 
 ```bash
@@ -55,7 +56,7 @@ $ cd circgen
 ### Preparing the `build` directory
 
 The tool is compiled in a dedicated `build` directory that only has
-links to both CompCert's and CDG's source files. The toplevel `Makefile`
+links to both CompCert's and CircGen's source files. The toplevel `Makefile`
 includes a target to setup the `build` directory.
 
 ```bash
@@ -65,10 +66,10 @@ $ cd build
 
 ### Compilation
 
-To compile the tool, please execute:
+To compile the tool, please execute ($OS is either `macosx` or `linux`):
 
 ```bash
-$ ./configure bool-circ
+$ ./configure bool-circ-$OS
 $ make depend
 $ make
 ```

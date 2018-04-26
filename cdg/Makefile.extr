@@ -79,7 +79,7 @@ CCOMP_OBJS:=$(shell $(MODORDER) driver/Driver.cmx)
 
 circgen: $(CCOMP_OBJS)
 	@echo "Linking $@"
-	@$(OCAMLOPT) -g -o $@ -cclib "-Wl,-stack_size,1000000" $(LIBS) $+
+	@$(OCAMLOPT) -g -o $@ $(OCAMLOPTLDFLAGS) $(LIBS) $+
 
 circgen.byte: $(CCOMP_OBJS:.cmx=.cmo)
 	@echo "Linking $@"
