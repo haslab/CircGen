@@ -89,10 +89,10 @@ case "$target" in
     struct_passing="ints"
     struct_return="ref"
     system="linux"
-    cc="${toolprefix}gcc -m32"
-    cprepro="${toolprefix}gcc -std=c99 -m32 -U__GNUC__ -E"
-    casm="${toolprefix}gcc -m32 -c"
-    clinker="${toolprefix}gcc -m32"
+    cc="${toolprefix}gcc"
+    cprepro="${toolprefix}gcc -std=c99 -U__GNUC__ -E"
+    casm="${toolprefix}gcc -c"
+    clinker="${toolprefix}gcc"
     ocamloptld=""
     libmath="-lm";;
   manual)
