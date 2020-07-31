@@ -30,7 +30,7 @@ needed:
  * [Ocaml](https://ocaml.org) functional language (version 4.00 or higher)
  * [Coq](https://coq.inria.fr) proof assistant (version 8.4.6)
  * [Menhir](http://gallium.inria.fr/~fpottier/menhir/) parser
-   generator
+   generator (version 20171222)
  * [SsReflect](http://ssr.msr-inria.inria.fr) Ssreflect/MathComp (version 1.6.1)
 
 All the above packages are available through the
@@ -38,7 +38,7 @@ All the above packages are available through the
 
 ```
 opam install coq-8.4.6
-...
+opam install menhir-20171222
 opam repo add coq-released https://coq.inria.fr/opam/released
 opam install coq-mathcomp-algebra.1.6.1
 ```
