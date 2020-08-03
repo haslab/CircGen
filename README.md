@@ -37,8 +37,8 @@ All the above packages are available through the
 [OPAM](https://opam.ocaml.org) (Ocaml Package Manager).
 
 ```
-opam install coq-8.4.6
-opam install menhir-20171222
+opam install coq.8.4.6
+opam install menhir.20171222
 opam repo add coq-released https://coq.inria.fr/opam/released
 opam install coq-mathcomp-algebra.1.6.1
 ```
