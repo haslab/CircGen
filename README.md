@@ -23,7 +23,7 @@ This repository includes, as a submodule, the original CompCert distribution
 
 ### Dependencies
 
-In order to compiler to prototype, the following dependencies are
+In order to compile to prototype, the following dependencies are
 needed:
 
  * [Python3](http://python.org)
